@@ -3,9 +3,13 @@ package com.camila.projetoSemana06.projetoSemana06.model;
 import ch.qos.logback.core.status.Status;
 import jakarta.annotation.Priority;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 public class Task {
 
     //declaracao de variáveis
+
+    private static final AtomicLong taskIdCounter = new AtomicLong();
     private Long id;
     private String description;
     private Status status; //representa o status de uma tarefa (pendente, em andamento, concluída).
@@ -14,11 +18,12 @@ public class Task {
 
     // Construtor vazio
     public Task() {
+        this.id = generateUniqueTaskId();
     }
 
     // Construtor com todos os atributos
-    public Task(Long id, String description, Status status, Priority priority, String assignee) {
-        this.id = id;
+    public Task(String description, Status status, Priority priority, String assignee) {
+        this.id = generateUniqueTaskId();
         this.description = description;
         this.status = status;
         this.priority = priority;
@@ -65,6 +70,10 @@ public class Task {
 
     public void setAssignee(String assignee) {
         this.assignee = assignee;
+    }
+
+    private Long generateUniqueTaskId() {
+        return taskIdCounter.getAndIncrement();
     }
 }
 
