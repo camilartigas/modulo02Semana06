@@ -4,11 +4,13 @@ import ch.qos.logback.core.status.Status;
 import jakarta.annotation.Priority;
 
 public class Task {
+
+    //declaracao de variáveis
     private Long id;
     private String description;
-    private Status status;
-    private Priority priority;
-    private String assignee;
+    private Status status; //representa o status de uma tarefa (pendente, em andamento, concluída).
+    private Priority priority; //representa a prioridade de uma tarefa (baixa, média, alta).
+    private String assignee; //nome do responsável pela tarefa.
 
     // Construtor vazio
     public Task() {
